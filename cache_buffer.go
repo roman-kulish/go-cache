@@ -118,7 +118,9 @@ func (c *bufferCache) Get(key string) ([]byte, error) {
 	}
 
 	ptr += lenHdrSize
-	value := c.cache[ptr:(ptr + dataLen)]
+	value := make([]byte, dataLen)
+
+	copy(value, c.cache[ptr:(ptr + dataLen)])
 
 	c.mu.RUnlock()
 
