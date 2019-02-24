@@ -12,3 +12,6 @@
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
+.idea/
+cmd/test-cache-warmer/urls.txt
+cmd/test-cache-warmer/report.html
