@@ -17,12 +17,13 @@ func (c mapCache) Set(key string, value []byte) (err error) {
 
 func (c mapCache) Get(key string) ([]byte, error) {
 	c.mu.RLock()
-	v := c.cache[key]
+	v := c.cache[key] // nil, if there is no such a key
 	c.mu.RUnlock()
 
 	return v, nil
 }
 
+// NewMap creates and returns a map-based Cache instance.
 func NewMap(capacity uint) Cache {
 	return &mapCache{
 		cache: make(map[string][]byte, capacity),

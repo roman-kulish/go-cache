@@ -42,6 +42,7 @@ func (c channelCache) runOp() {
 	}
 }
 
+// NewChannel creates and returns a map-based Cache instance with a channel instead of mutex.
 func NewChannel(capacity uint) Cache {
 	c := &channelCache{
 		cache: make(map[string][]byte, capacity),
@@ -49,7 +50,7 @@ func NewChannel(capacity uint) Cache {
 		close: make(chan struct{}),
 	}
 
-	go c.runOp()
+	go c.runOp() // run map ops worker
 
 	return c
 }
